@@ -2,87 +2,55 @@ public class Main {
 
     public static void main(String[] args) {
 
-        NodoArbol<Integer> raiz = new NodoArbol<>(1);
+        NodoArbol<String> raiz =
+                new NodoArbol<>("Atletismo");
 
-        NodoArbol<Integer> n2 = new NodoArbol<>(2);
-        NodoArbol<Integer> n3 = new NodoArbol<>(3);
-        NodoArbol<Integer> n4 = new NodoArbol<>(4);
-        NodoArbol<Integer> n5 = new NodoArbol<>(5);
-        NodoArbol<Integer> n6 = new NodoArbol<>(6);
-        NodoArbol<Integer> n7 = new NodoArbol<>(7);
+        NodoArbol<String> saltoLargo =
+                new NodoArbol<>("Salto largo");
 
-        raiz.setIzquierdo(n2);
-        raiz.setDerecho(n3);
+        NodoArbol<String> saltoAlto =
+                new NodoArbol<>("Salto alto");
 
-        n2.setIzquierdo(n4);
-        n2.setDerecho(n5);
+        NodoArbol<String> vallas =
+                new NodoArbol<>("Carreras de vallas");
 
-        n3.setIzquierdo(n6);
-        n3.setDerecho(n7);
+        NodoArbol<String> fondo =
+                new NodoArbol<>("Carreras de fondo");
 
-        System.out.println("ARBOL BINARIO");
-        imprimirRaizYHijos(raiz);
+        NodoArbol<String> planos80 =
+                new NodoArbol<>("80 metros planos");
 
-        System.out.println("\nRECORRIDO INORDEN");
-        imprimirInorden(raiz);
+        NodoArbol<String> planos100 =
+                new NodoArbol<>("100 metros planos");
 
-        System.out.println("\nARBOL DE EXPRESIONES");
-        NodoArbol<String> expresion = crearExpresion();
-        imprimirRaizYHijosTexto(expresion);
+        NodoArbol<String> jabalina =
+                new NodoArbol<>("Lanzamiento de jabalina");
+
+        raiz.setIzquierdo(saltoLargo);
+        raiz.setDerecho(saltoAlto);
+
+        saltoLargo.setIzquierdo(vallas);
+        saltoLargo.setDerecho(fondo);
+
+        saltoAlto.setIzquierdo(planos80);
+        saltoAlto.setDerecho(planos100);
+
+        vallas.setIzquierdo(jabalina);
+
+        System.out.println("ARBOL BINARIO DE ATLETISMO");
+        imprimirArbol(raiz);
     }
 
-    public static void imprimirRaizYHijos(
-            NodoArbol<Integer> nodo) {
-
-        if (nodo == null) {
-            return;
-        }
-
-        System.out.println("Nodo: " + nodo.getDato());
-
-        imprimirRaizYHijos(nodo.getIzquierdo());
-        imprimirRaizYHijos(nodo.getDerecho());
-    }
-
-    public static void imprimirInorden(
-            NodoArbol<Integer> nodo) {
-
-        if (nodo == null) {
-            return;
-        }
-
-        imprimirInorden(nodo.getIzquierdo());
-        System.out.print(nodo.getDato() + " ");
-        imprimirInorden(nodo.getDerecho());
-    }
-
-    public static NodoArbol<String> crearExpresion() {
-
-        NodoArbol<String> suma = new NodoArbol<>("+");
-        NodoArbol<String> multiplicacion = new NodoArbol<>("*");
-        NodoArbol<String> a = new NodoArbol<>("A");
-        NodoArbol<String> b = new NodoArbol<>("B");
-        NodoArbol<String> c = new NodoArbol<>("C");
-
-        suma.setIzquierdo(multiplicacion);
-        suma.setDerecho(c);
-
-        multiplicacion.setIzquierdo(a);
-        multiplicacion.setDerecho(b);
-
-        return suma;
-    }
-
-    public static void imprimirRaizYHijosTexto(
+    public static void imprimirArbol(
             NodoArbol<String> nodo) {
 
         if (nodo == null) {
             return;
         }
 
-        System.out.println("Nodo: " + nodo.getDato());
+        System.out.println(nodo.getDato());
 
-        imprimirRaizYHijosTexto(nodo.getIzquierdo());
-        imprimirRaizYHijosTexto(nodo.getDerecho());
+        imprimirArbol(nodo.getIzquierdo());
+        imprimirArbol(nodo.getDerecho());
     }
 }
