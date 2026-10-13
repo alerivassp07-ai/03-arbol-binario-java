@@ -1,0 +1,88 @@
+public class Main {
+
+    public static void main(String[] args) {
+
+        NodoArbol<Integer> raiz = new NodoArbol<>(1);
+
+        NodoArbol<Integer> n2 = new NodoArbol<>(2);
+        NodoArbol<Integer> n3 = new NodoArbol<>(3);
+        NodoArbol<Integer> n4 = new NodoArbol<>(4);
+        NodoArbol<Integer> n5 = new NodoArbol<>(5);
+        NodoArbol<Integer> n6 = new NodoArbol<>(6);
+        NodoArbol<Integer> n7 = new NodoArbol<>(7);
+
+        raiz.setIzquierdo(n2);
+        raiz.setDerecho(n3);
+
+        n2.setIzquierdo(n4);
+        n2.setDerecho(n5);
+
+        n3.setIzquierdo(n6);
+        n3.setDerecho(n7);
+
+        System.out.println("ARBOL BINARIO");
+        imprimirRaizYHijos(raiz);
+
+        System.out.println("\nRECORRIDO INORDEN");
+        imprimirInorden(raiz);
+
+        System.out.println("\nARBOL DE EXPRESIONES");
+        NodoArbol<String> expresion = crearExpresion();
+        imprimirRaizYHijosTexto(expresion);
+    }
+
+    public static void imprimirRaizYHijos(
+            NodoArbol<Integer> nodo) {
+
+        if (nodo == null) {
+            return;
+        }
+
+        System.out.println("Nodo: " + nodo.getDato());
+
+        imprimirRaizYHijos(nodo.getIzquierdo());
+        imprimirRaizYHijos(nodo.getDerecho());
+    }
+
+    public static void imprimirInorden(
+            NodoArbol<Integer> nodo) {
+
+        if (nodo == null) {
+            return;
+        }
+
+        imprimirInorden(nodo.getIzquierdo());
+        System.out.print(nodo.getDato() + " ");
+        imprimirInorden(nodo.getDerecho());
+    }
+
+    public static NodoArbol<String> crearExpresion() {
+
+        NodoArbol<String> suma = new NodoArbol<>("+");
+        NodoArbol<String> multiplicacion = new NodoArbol<>("*");
+        NodoArbol<String> a = new NodoArbol<>("A");
+        NodoArbol<String> b = new NodoArbol<>("B");
+        NodoArbol<String> c = new NodoArbol<>("C");
+
+        suma.setIzquierdo(multiplicacion);
+        suma.setDerecho(c);
+
+        multiplicacion.setIzquierdo(a);
+        multiplicacion.setDerecho(b);
+
+        return suma;
+    }
+
+    public static void imprimirRaizYHijosTexto(
+            NodoArbol<String> nodo) {
+
+        if (nodo == null) {
+            return;
+        }
+
+        System.out.println("Nodo: " + nodo.getDato());
+
+        imprimirRaizYHijosTexto(nodo.getIzquierdo());
+        imprimirRaizYHijosTexto(nodo.getDerecho());
+    }
+}
